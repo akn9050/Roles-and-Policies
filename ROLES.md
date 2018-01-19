@@ -17,9 +17,14 @@ New-AzureRmRoleAssignment -ResourceGroupName <rg name> -SignInName <signIn Name>
 
 ## Microsoft.Compute
 
-Mainly **Microsoft.Compute** include resources like Virtual machines, Virtual machine scale sets, availability sets etc..
-We can further restrict or allow the user by using the following actions actions/operations. </br>
-
+Mainly **Microsoft.Compute** include resources like Virtual machines, Virtual machine scale sets, availability sets etc..</br>
+We can give full permissions to the resource by adding the following actions in Role file.</br>
+__Microsoft.Compute/avalabilitySets/*__ </br>
+__Microsoft.Compute/virtualMachines/*__ </br> 
+__Microsoft.Compute/virtualMachineScaleSets/*__ </br>
+Or else we can give :</br>
+__Microsoft.Compute/*__ - This will give full permissions to all resources under Microsoft.Compute</br>
+We can further restrict or allow the user by using the following actions actions/operations along with Microsoft.Compute. </br>
 **/availabilitySets/read**	             -        Get the properties of an availability set </br>
 **/availabilitySets/write**	             -        Creates a new availability set or updates an existing one </br>
 **/availabilitySets/delete**            -       	Deletes the availability set </br>
@@ -39,6 +44,10 @@ We can further restrict or allow the user by using the following actions actions
 **/virtualMachineScaleSets/virtualMachines/deallocate/action**	-  Powers off and releases the compute resources for a Virtual Machine in a VM Scale Set.</br>
 
 ## Micrsoft.Storage
+We can give full permissions to  by adding the following actions in Role file.</br>
+__Microsoft.Storage/*__ </br>
+Or else we can give :</br>
+__Microsoft.Storage/storageAccounts/*__   - This will give permission to all actions under the resource Storage Account. </br>
 **/storageAccounts/write**	             -          Creates a storage account with the specified parameters or update the properties or  tags or adds custom domain for the specified storage account.</br>
 **/storageAccounts/delete**              -         	Deletes an existing storage account.</br>
 **/storageAccounts/listkeys/action**	   -          Returns the access keys for the specified storage account.</br>
