@@ -1,5 +1,5 @@
 # ROLES (RBAC-arm )
-This Document will help you to create appropriate role for your environment and decide what all should we include in our role file. This document is more about what we are using in daya to day work.
+This Document will help you to create appropriate role for your environment and decide what all should we include in our role file. This document is more about what we are using in day to day work.
 A Role is that one which give the user the permission to read, write, modify etc..
 For reference on roles/actions you can go to : https://docs.microsoft.com/en-us/azure/active-directory/role-based-access-control-resource-provider-operations
 
@@ -18,7 +18,7 @@ New-AzureRmRoleAssignment -ResourceGroupName < rg_name > -SignInName < signIn_Na
 ## Microsoft.Compute
 
 Mainly **Microsoft.Compute** include resources like Virtual machines, Virtual machine scale sets, availability sets etc..</br>
-We can give full permissions to the resource by adding the following actions in Role file.</br>
+We can give full permissions to these resources by adding the following actions in Role file.</br>
 __Microsoft.Compute/avalabilitySets/*__ </br>
 __Microsoft.Compute/virtualMachines/*__ </br> 
 __Microsoft.Compute/virtualMachineScaleSets/*__ </br>
@@ -62,7 +62,7 @@ __Microsoft.Networks/*__ </br>
 Microsoft.Networks includes a lot of resources like Virtual Networks, Network Interfaces, Network security groups, Public IP Address, Load Balancers, Local Network Gateways, Application Gateways. </br>
 We can further deny or allow this resources more specifically. </br>
 For a Virtual machine normally we will be using Virtual Networks, Network Interfaces, Network security groups and Public IP Address.
-If we are giving full permissions then operatins in Rbac will look like this.</br>
+If we are giving full permissions to these resources then operations in Rbac will look like this.</br>
 __Microsoft.Networks/virtualNetworks/*__ </br>
 __Microsoft.Networks/networkInterfaces/*__ </br>
 __Microsoft.Networks/networkSecurityGroups/*__ </br>
@@ -94,7 +94,33 @@ __Microsoft.Networks/publicIPAddress/*__ </br>
 **/publicIPAddresses/read**	- Gets a public ip address definition.</br>
 **/publicIPAddresses/write**	- Creates a public Ip address or updates an existing public Ip address.</br>
 **/publicIPAddresses/delete**	- Deletes a public Ip address.</br>
-**/publicIPAddresses/join/action** - Joins a public ip address.</br>
+**/publicIPAddresses/join/action** - Joins a public ip address.</br></br>
+If the user wants to create Load Balancer,the following actions along with Microsoft.Networks in Rbac file.</br>
+**/loadBalancers/read**-	Gets a load balancer definition.</br>
+**/loadBalancers/write**-	Creates a load balancer or updates an existing load balancer.</br>
+**/loadBalancers/delete**-	Deletes a load balancer.</br>
+**/loadBalancers/networkInterfaces/read**	-Gets references to all the network interfaces under a load balancer.</br>
+**/loadBalancers/loadBalancingRules/read**	-Gets a load balancer load balancing rule definition.</br>
+**/loadBalancers/backendAddressPools/read**	-Gets a load balancer backend address pool definition.</br>
+**/loadBalancers/backendAddressPools/join/action**	-Joins a load balancer backend address pool.</br>
+**/loadBalancers/probes/read**	-Gets a load balancer probe.</br>
+**/loadBalancers/virtualMachines/read**	-Gets references to all the virtual machines under a load balancer.</br>
+**/loadBalancers/frontendIPConfigurations/read**	-Gets a load balancer frontend IP configuration definition.</br>
+For full permissions to loadBalancer we can use: __Microsoft.Networks/loadBalancers/*__ .</br></br>
+
+Microsoft.Networks also includes resources like Application Gateways and Local Network Gateways. Resources like this are highly cost consuming. So if it is not needed for the user, then it is better to deny permission create to these resources.We can deny any resources by including that specific resources inside Not Actions[].</br>
+Actions/ Operations related to Network Gateways and Application Gateways are:</br>
+**/applicationGateways/read**	-Gets an application gateway.</br>
+**/applicationGateways/write**	-Creates an application gateway or updates an application gateway.</br>
+**/applicationGateways/delete**	-Deletes an application gateway.</br>
+**/applicationGateways/backendhealth/action**	-Gets an application gateway backend health.</br>
+**/applicationGateways/start/action**	-Starts an application gateway.</br>
+**/applicationGateways/stop/action**	-Stops an application gateway.</br>
+**/applicationGateways/backendAddressPools/join/action** -	Joins an application gateway backend address pool.</br>
+
+
+
+
  
 
 
