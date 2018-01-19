@@ -48,6 +48,7 @@ We can give full permissions to  by adding the following actions in Role file.</
 __Microsoft.Storage/*__ </br>
 Or else we can give :</br>
 __Microsoft.Storage/storageAccounts/*__   - This will give permission to all actions under the resource Storage Account. </br>
+We can further restrict or allow the user by using the following actions actions/operations along with Microsoft.Storage. </br>
 **/storageAccounts/write**	             -          Creates a storage account with the specified parameters or update the properties or  tags or adds custom domain for the specified storage account.</br>
 **/storageAccounts/delete**              -         	Deletes an existing storage account.</br>
 **/storageAccounts/listkeys/action**	   -          Returns the access keys for the specified storage account.</br>
