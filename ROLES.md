@@ -59,8 +59,45 @@ We can further restrict or allow the user by using the following actions actions
 We can give full permissions by adding the following actions in Role file.</br>
 __Microsoft.Networks/*__ </br>
 
-Microsoft.Networks includes a lot of resources like Virtual Networks, Network Interfaces, Network security groups, Public IP Address, Load Balancers, Local Network Gateways, Application Gateways </br>
+Microsoft.Networks includes a lot of resources like Virtual Networks, Network Interfaces, Network security groups, Public IP Address, Load Balancers, Local Network Gateways, Application Gateways. </br>
 We can further deny or allow this resources more specifically. </br>
+For a Virtual machine normally we will be using Virtual Networks, Network Interfaces, Network security groups and Public IP Address.
+If we are giving full permissions then operatins in Rbac will look like this.</br>
+__Microsoft.Networks/virtualNetworks/*__ </br>
+__Microsoft.Networks/networkInterfaces/*__ </br>
+__Microsoft.Networks/networkSecurityGroups/*__ </br>
+__Microsoft.Networks/publicIPAddress/*__ </br>
+ We can further deny or restrict using the following commands along with Microsoft.Networks</br>
+**/networkSecurityGroups/read**	- Gets a network security group definition.</br>
+**/networkSecurityGroups/write**	- Creates a network security group or updates an existing network security group.</br>
+**/networkSecurityGroups/delete**	 - Deletes a network security group.</br>
+**/networkSecurityGroups/join/action**	- Joins a network security group.</br>
+**/networkSecurityGroups/defaultSecurityRules/read**	- Gets a default security rule definition.</br>
+**/networkSecurityGroups/securityRules/read**	 - Gets a security rule definition.</br>
+**/networkSecurityGroups/securityRules/write**	 - Creates a security rule or updates an existing security rule.</br>
+**/networkSecurityGroups/securityRules/delete**  - Deletes a security rule.</br></br>
+**/virtualNetworks/read** - Get the virtual network definition.</br>
+**/virtualNetworks/write** -	Creates a virtual network or updates an existing virtual network.</br>
+**/virtualNetworks/delete** 	-Deletes a virtual network.</br>
+**/virtualNetworks/subnets/read**	- Gets a virtual network subnet definition.</br>
+**/virtualNetworks/subnets/write**	- Creates a virtual network subnet or updates an existing virtual network subnet.</br>
+**/virtualNetworks/subnets/delete**	- Deletes a virtual network subnet.</br>
+**/virtualNetworks/subnets/join/action**	- Joins a virtual network.</br>
+**/virtualNetworks/subnets/virtualMachines/read**	- Gets references to all the virtual machines in a virtual network subnet.</br>
+**/virtualNetworks/virtualMachines/read**	- Gets references to all the virtual machines in a virtual network.</br></br>
+**/networkInterfaces/read**	- Gets a network interface definition.</br>
+**/networkInterfaces/write**	- Creates a network interface or updates an existing network interface.</br>
+**/networkInterfaces/join/action**	- Joins a Virtual Machine to a network interface.</br>
+**/networkInterfaces/delete**	- Deletes a network interface.</br>
+**/networkInterfaces/loadBalancers/read**	- Gets all the load balancers that the network interface is part of.</br>
+**/networkInterfaces/ipconfigurations/read**	- Gets a network interface ip configuration definition.</br></br>
+**/publicIPAddresses/read**	- Gets a public ip address definition.</br>
+**/publicIPAddresses/write**	- Creates a public Ip address or updates an existing public Ip address.</br>
+**/publicIPAddresses/delete**	- Deletes a public Ip address.</br>
+**/publicIPAddresses/join/action** - Joins a public ip address.</br>
+ 
+
+
 
 
 
