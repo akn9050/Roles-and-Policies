@@ -59,7 +59,7 @@ We can further restrict or allow the user by using the following actions actions
 We can give full permissions by adding the following actions in Role file.</br>
 __Microsoft.Networks/*__ </br>
 
-Microsoft.Networks includes a lot of resources like Virtual Networks, Network Interfaces, Network security groups, Public IP Address, Load Balancer</br>
+Microsoft.Networks includes a lot of resources like Virtual Networks, Network Interfaces, Network security groups, Public IP Address, Load Balancers, Local Network Gateways, Application Gateways </br>
 We can further deny or allow this resources more specifically. </br>
 
 
