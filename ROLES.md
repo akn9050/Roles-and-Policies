@@ -44,7 +44,7 @@ We can further restrict or allow the user by using the following actions actions
 **/virtualMachineScaleSets/virtualMachines/deallocate/action**	-  Powers off and releases the compute resources for a Virtual Machine in a VM Scale Set.</br>
 
 ## Micrsoft.Storage
-We can give full permissions to  by adding the following actions in Role file.</br>
+We can give full permissions by adding the following actions in Role file.</br>
 __Microsoft.Storage/*__ </br>
 Or else we can give :</br>
 __Microsoft.Storage/storageAccounts/*__   - This will give permission to all actions under the resource Storage Account. </br>
