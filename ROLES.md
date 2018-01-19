@@ -5,15 +5,15 @@ For reference on roles/actions you can go to : https://docs.microsoft.com/en-us/
 
 ## Commands related to Roles and Policy
 #### Remove an existing policy
-Remove-AzureRmPolicyAssignment -Name <policy name> -Scope <resource group ID>
+Remove-AzureRmPolicyAssignment -Name < policy_name > -Scope < resourcegroup_ID >
 #### Defining a new policy
-New-AzureRmPolicyDefinition -Name <policy name> -Description "<enter your description>" -Policy "<policy file path>"</br>
+New-AzureRmPolicyDefinition -Name < policy_name > -Description "< enter_your_description >" -Policy "< policy_file_path >" </br>
 #### Assigning a defined Policy
-New-AzureRMPolicyAssignment -name <policy name> -Scope <resource group ID> -PolicyDefinition <assigned policy name></br>
+New-AzureRMPolicyAssignment -name < policy_name > -Scope < resourcegroup_ID > -PolicyDefinition < assigned_policy_name ></br>
 #### Defining new custom role
-New-AzureRmRoleDefinition -InputFile <path of Role file></br>
+New-AzureRmRoleDefinition -InputFile < Role_file_path ></br>
 ####  Assignig New Role
-New-AzureRmRoleAssignment -ResourceGroupName <rg name> -SignInName <signIn Name> -RoleDefinitionName <role name-inbuilt role or custom role></br>
+New-AzureRmRoleAssignment -ResourceGroupName < rg_name > -SignInName < signIn_Name > -RoleDefinitionName < role_name-inbuilt role or custom role ></br>
 
 ## Microsoft.Compute
 
@@ -56,6 +56,12 @@ We can further restrict or allow the user by using the following actions actions
 **/storageAccounts/read**	               -          Returns the list of storage accounts or gets the properties for the specified storage account.</br>
 
 ## Microsoft.Networks
+We can give full permissions by adding the following actions in Role file.</br>
+__Microsoft.Networks/*__ </br>
+
+Microsoft.Networks includes a lot of resources like Virtual Networks, Network Interfaces, Network security groups, Public IP Address, Load Balancer</br>
+We can further deny or allow this resources more specifically. </br>
+
 
 
 
