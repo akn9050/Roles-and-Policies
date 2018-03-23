@@ -6,10 +6,13 @@ For reference on roles/actions you can go to : https://docs.microsoft.com/en-us/
 
 ## Powershell commands related to Roles 
 #### Defining new custom role
+````
 New-AzureRmRoleDefinition -InputFile < Role_file_path ></br>
+````
 ####  Assignig New Role
+````
 New-AzureRmRoleAssignment -ResourceGroupName < rg_name > -SignInName < signIn_Name > -RoleDefinitionName < role_name-inbuilt role or custom role ></br>
-
+````
 ## Microsoft.Compute
 
 Mainly **Microsoft.Compute** include resources like Virtual machines, Virtual machine scale sets, availability sets etc..</br>
@@ -19,7 +22,7 @@ __Microsoft.Compute/virtualMachines/*__ </br>
 __Microsoft.Compute/virtualMachineScaleSets/*__ </br>
 Or else we can give :</br>
 __Microsoft.Compute/*__ - This will give full permissions to all resources under Microsoft.Compute</br>
-We can further restrict or allow the user by using the following actions actions/operations along with Microsoft.Compute. </br>
+We can further restrict or allow the user by using the following actions actions/operations along with Microsoft.Compute. </br></br>
 **/availabilitySets/read**	             -        Get the properties of an availability set </br>
 **/availabilitySets/write**	             -        Creates a new availability set or updates an existing one </br>
 **/availabilitySets/delete**            -       	Deletes the availability set </br>
@@ -114,112 +117,117 @@ Actions/ Operations related to Network Gateways and Application Gateways are:</b
 **/applicationGateways/backendAddressPools/join/action** -	Joins an application gateway backend address pool.</br>
 
 # ARM Policies
-This will help you to create appropriate ARM policies for your environment and decide what all should we include in your policy file. This document is more about what we are using in day to day work.
-Azure Policy is a service in Azure that you use to create, assign and, manage policy definitions. Policy definitions enforce different rules and actions over your resources, so those resources stay compliant with your corporate standards and service level agreements. Azure Policy runs an evaluation of your resources, scanning for those not compliant with the policy definitions you have. For example, you can have a policy to allow only certain type of virtual machines. Another requires that all resources have a particular tag. These policies are then evaluated when creating and updating resources.<\br>
-Resource policy definition used by Azure Policy enables you to establish conventions for resources in your organization by describing when the policy is enforced and what action to take. By defining conventions, you can control costs and more easily manage your resources. For example, you can specify that only certain types of virtual machines are allowed. Or, you can require that all resources have a particular tag. Policies are inherited by all child resources. So, if a policy is applied to a resource group, it is applicable to all the resources in that resource group.<\br>
+This will help you to create appropriate ARM policies for your environment and decide what all should we include in your policy file. This document is more about what we are using in day to day work.</br>
+Azure Policy is a service in Azure that you use to create, assign and, manage policy definitions. Policy definitions enforce different rules and actions over your resources, so those resources stay compliant with your corporate standards and service level agreements. Azure Policy runs an evaluation of your resources, scanning for those not compliant with the policy definitions you have. For example, you can have a policy to allow only certain type of virtual machines. Another requires that all resources have a particular tag. These policies are then evaluated when creating and updating resources.</br>
+Resource policy definition used by Azure Policy enables you to establish conventions for resources in your organization by describing when the policy is enforced and what action to take. By defining conventions, you can control costs and more easily manage your resources. For example, you can specify that only certain types of virtual machines are allowed. Or, you can require that all resources have a particular tag. Policies are inherited by all child resources. So, if a policy is applied to a resource group, it is applicable to all the resources in that resource group.</br>
 For reference on roles/actions you can go to : https://docs.microsoft.com/en-us/azure/azure-policy/policy-definition#parameters 
 
 ## Powershell commands related to ARM Policy
 #### Remove an existing policy
-Remove-AzureRmPolicyAssignment -Name < policy_name > -Scope < resourcegroup_ID ><\br>
+````
+Remove-AzureRmPolicyAssignment -Name < policy_name > -Scope < resourcegroup_ID ></br>
+````
 #### Defining a new policy
+````
 New-AzureRmPolicyDefinition -Name < policy_name > -Description "< enter_your_description >" -Policy "< policy_file_path >" </br>
+````
 #### Assigning a defined Policy
+````
 New-AzureRMPolicyAssignment -name < policy_name > -Scope < resourcegroup_ID > -PolicyDefinition < assigned_policy_name ></br>
-
+````
 ##Aliases
-Some of the property aliases to access specific properties for a resource type are specified in this document. Aliases enable you to restrict what values or conditions are permitted for a property on a resource. Each alias maps to paths in different API versions for a given resource type. During policy evaluation, the policy engine gets the property path for that API version.<\br>
+Some of the property aliases to access specific properties for a resource type are specified in this document. Aliases enable you to restrict what values or conditions are permitted for a property on a resource. Each alias maps to paths in different API versions for a given resource type. During policy evaluation, the policy engine gets the property path for that API version.</br>
 
 ### Microsoft.Cache/Redis
 
-**Microsoft.Cache/Redis/enableNonSslPort**	- Set whether the non-ssl Redis server port (6379) is enabled.<\br>
-**Microsoft.Cache/Redis/shardCount**	- Set the number of shards to be created on a Premium Cluster Cache.<\br>
-**Microsoft.Cache/Redis/sku.capacity**	- Set the size of the Redis cache to deploy.<\br>
-**Microsoft.Cache/Redis/sku.family**	- Set the SKU family to use.<\br>
-**Microsoft.Cache/Redis/sku.name**	- Set the type of Redis Cache to deploy.<\br>
+**Microsoft.Cache/Redis/enableNonSslPort**	- Set whether the non-ssl Redis server port (6379) is enabled.</br>
+**Microsoft.Cache/Redis/shardCount**	- Set the number of shards to be created on a Premium Cluster Cache.</br>
+**Microsoft.Cache/Redis/sku.capacity**	- Set the size of the Redis cache to deploy.</br>
+**Microsoft.Cache/Redis/sku.family**	- Set the SKU family to use.</br>
+**Microsoft.Cache/Redis/sku.name**	- Set the type of Redis Cache to deploy.</br>
 
 ### Microsoft.Cdn/profiles
 
-**Microsoft.CDN/profiles/sku.name**	- Set the name of the pricing tier.<\br>
+**Microsoft.CDN/profiles/sku.name**	- Set the name of the pricing tier.</br>
 
 ### Microsoft.Compute/disks
 
-**Microsoft.Compute/imageOffer**	- Set the offer of the platform image or marketplace image used to create the virtual machine.<\br>
-**Microsoft.Compute/imagePublisher**	- Set the publisher of the platform image or marketplace image used to create the virtual machine.<\br>
-**Microsoft.Compute/imageSku**	- Set the SKU of the platform image or marketplace image used to create the virtual machine.<\br>
-**Microsoft.Compute/imageVersion**	- Set the version of the platform image or marketplace image used to create the virtual machine.<\br>
+**Microsoft.Compute/imageOffer**	- Set the offer of the platform image or marketplace image used to create the virtual machine.</br>
+**Microsoft.Compute/imagePublisher**	- Set the publisher of the platform image or marketplace image used to create the virtual machine.</br>
+**Microsoft.Compute/imageSku**	- Set the SKU of the platform image or marketplace image used to create the virtual machine.</br>
+**Microsoft.Compute/imageVersion**	- Set the version of the platform image or marketplace image used to create the virtual machine.</br>
 
 ### Microsoft.Compute/virtualMachines
 
-**Microsoft.Compute/imageId**	- Set the identifier of the image used to create the virtual machine.<\br>
-**Microsoft.Compute/imageOffer**	- Set the offer of the platform image or marketplace image used to create the virtual machine.<\br>
-**Microsoft.Compute/imagePublisher**	- Set the publisher of the platform image or marketplace image used to create the virtual machine.<\br>
-**Microsoft.Compute/imageSku**	- Set the SKU of the platform image or marketplace image used to create the virtual machine.<\br>
-**Microsoft.Compute/imageVersion**	- Set the version of the platform image or marketplace image used to create the virtual machine.<\br>
-**Microsoft.Compute/licenseType**	- Set that the image or disk is licensed on-premises. This value is only used for images that contain the Windows Server operating system.<\br>
-**Microsoft.Compute/virtualMachines/imageOffer**	- Set the offer of the platform image or marketplace image used to create the virtual machine.<\br>
-**Microsoft.Compute/virtualMachines/imagePublisher**	- Set the publisher of the platform image or marketplace image used to create the virtual machine.<\br>
-**Microsoft.Compute/virtualMachines/imageSku**	- Set the SKU of the platform image or marketplace image used to create the virtual machine.<\br>
-**Microsoft.Compute/virtualMachines/imageVersion**	- Set the version of the platform image or marketplace image used to create the virtual machine.<\br>
-**Microsoft.Compute/virtualMachines/osDisk.Uri**	- Set the vhd URI.<\br>
-**Microsoft.Compute/virtualMachines/sku.name**	- Set the size of the virtual machine.<\br>
-**Microsoft.Compute/virtualMachines/availabilitySet.id**	- Sets the availability set id for the virtual machine.<\br>
+**Microsoft.Compute/imageId**	- Set the identifier of the image used to create the virtual machine.</br>
+**Microsoft.Compute/imageOffer**	- Set the offer of the platform image or marketplace image used to create the virtual machine.</br>
+**Microsoft.Compute/imagePublisher**	- Set the publisher of the platform image or marketplace image used to create the virtual machine.</br>
+**Microsoft.Compute/imageSku**	- Set the SKU of the platform image or marketplace image used to create the virtual machine.</br>
+**Microsoft.Compute/imageVersion**	- Set the version of the platform image or marketplace image used to create the virtual machine.</br>
+**Microsoft.Compute/licenseType**	- Set that the image or disk is licensed on-premises. This value is only used for images that contain the Windows Server operating system.</br>
+**Microsoft.Compute/virtualMachines/imageOffer**	- Set the offer of the platform image or marketplace image used to create the virtual machine.</br>
+**Microsoft.Compute/virtualMachines/imagePublisher**	- Set the publisher of the platform image or marketplace image used to create the virtual machine.</br>
+**Microsoft.Compute/virtualMachines/imageSku**	- Set the SKU of the platform image or marketplace image used to create the virtual machine.</br>
+**Microsoft.Compute/virtualMachines/imageVersion**	- Set the version of the platform image or marketplace image used to create the virtual machine.</br>
+**Microsoft.Compute/virtualMachines/osDisk.Uri**	- Set the vhd URI.</br>
+**Microsoft.Compute/virtualMachines/sku.name**	- Set the size of the virtual machine.</br>
+**Microsoft.Compute/virtualMachines/availabilitySet.id**	- Sets the availability set id for the virtual machine.</br>
 
 ### Microsoft.Compute/virtualMachines/extensions
 
-**Microsoft.Compute/virtualMachines/extensions/publisher**	- Set the name of the extension’s publisher.<\br>
-**Microsoft.Compute/virtualMachines/extensions/type**	- Set the type of extension.<\br>
-**Microsoft.Compute/virtualMachines/extensions/typeHandlerVersion**	- Set the version of the extension.<\br>
+**Microsoft.Compute/virtualMachines/extensions/publisher**	- Set the name of the extension’s publisher.</br>
+**Microsoft.Compute/virtualMachines/extensions/type**	- Set the type of extension.</br>
+**Microsoft.Compute/virtualMachines/extensions/typeHandlerVersion**	- Set the version of the extension.</br>
 
 ### Microsoft.Compute/virtualMachineScaleSets
 
-**Microsoft.Compute/imageId** -	Set the identifier of the image used to create the virtual machine.<\br>
-**Microsoft.Compute/imageOffer** -	Set the offer of the platform image or marketplace image used to create the virtual machine.<\br>
-**Microsoft.Compute/imagePublisher** -	Set the publisher of the platform image or marketplace image used to create the virtual machine.<\br>
-**Microsoft.Compute/imageVersion** -	Set the version of the platform image or marketplace image used to create the virtual machine.<\br>
-**Microsoft.Compute/imageSku** -	Set the SKU of the platform image or marketplace image used to create the virtual machine.<\br>
-**Microsoft.Compute/imageVersion** -	Set the version of the platform image or marketplace image used to create the virtual machine.<\br>
-**Microsoft.Compute/licenseType** -	Set that the image or disk is licensed on-premises. This value is only used for images that contain the Windows Server operating system.<\br>
-**Microsoft.Compute/VirtualMachineScaleSets/computerNamePrefix** -	Set the computer name prefix for all the virtual machines in the scale set.<\br>
-**Microsoft.Compute/VirtualMachineScaleSets/osdisk.imageUrl** -	Set the blob URI for user image.<\br>
-**Microsoft.Compute/VirtualMachineScaleSets/osdisk.vhdContainers** -	Set the container URLs that are used to store operating system disks for the scale set.<\br>
-**Microsoft.Compute/VirtualMachineScaleSets/sku.name** -	Set the size of virtual machines in a scale set.<\br>
-**Microsoft.Compute/VirtualMachineScaleSets/sku.tier** -	Set the tier of virtual machines in a scale set.<\br>
+**Microsoft.Compute/imageId** -	Set the identifier of the image used to create the virtual machine.</br>
+**Microsoft.Compute/imageOffer** -	Set the offer of the platform image or marketplace image used to create the virtual machine.</br>
+**Microsoft.Compute/imagePublisher** -	Set the publisher of the platform image or marketplace image used to create the virtual machine.</br>
+**Microsoft.Compute/imageVersion** -	Set the version of the platform image or marketplace image used to create the virtual machine.</br>
+**Microsoft.Compute/imageSku** -	Set the SKU of the platform image or marketplace image used to create the virtual machine.</br>
+**Microsoft.Compute/imageVersion** -	Set the version of the platform image or marketplace image used to create the virtual machine.</br>
+**Microsoft.Compute/licenseType** -	Set that the image or disk is licensed on-premises. This value is only used for images that contain the Windows Server operating system.</br>
+**Microsoft.Compute/VirtualMachineScaleSets/computerNamePrefix** -	Set the computer name prefix for all the virtual machines in the scale set.</br>
+**Microsoft.Compute/VirtualMachineScaleSets/osdisk.imageUrl** -	Set the blob URI for user image.</br>
+**Microsoft.Compute/VirtualMachineScaleSets/osdisk.vhdContainers** -	Set the container URLs that are used to store operating system disks for the scale set.</br>
+**Microsoft.Compute/VirtualMachineScaleSets/sku.name** -	Set the size of virtual machines in a scale set.</br>
+**Microsoft.Compute/VirtualMachineScaleSets/sku.tier** -	Set the tier of virtual machines in a scale set.</br>
 
 ### Microsoft.Network/applicationGateways
 
-**Microsoft.Network/applicationGateways/sku.name** -	Set the size of the gateway.<\br>
+**Microsoft.Network/applicationGateways/sku.name** -	Set the size of the gateway.</br>
 
 ### Microsoft.Network/virtualNetworkGateways
 
-**Microsoft.Network/virtualNetworkGateways/gatewayType**	- Set the type of this virtual network gateway.<\br>
-**Microsoft.Network/virtualNetworkGateways/sku.name**	- Set the gateway SKU name.<\br>
+**Microsoft.Network/virtualNetworkGateways/gatewayType**	- Set the type of this virtual network gateway.</br>
+**Microsoft.Network/virtualNetworkGateways/sku.name**	- Set the gateway SKU name.</br>
 
 ### Microsoft.Sql/servers
 
-**Microsoft.Sql/servers/version**	- Set the version of the server.<\br>
+**Microsoft.Sql/servers/version**	- Set the version of the server.</br>
 
 ### Microsoft.Sql/databases
 
-**Microsoft.Sql/servers/databases/edition** -	Set the edition of the database.<\br>
-**Microsoft.Sql/servers/databases/elasticPoolName**	- Set the name of the elastic pool the database is in.<\br>
-**Microsoft.Sql/servers/databases/requestedServiceObjectiveId**	- Set the configured service level objective ID of the database.<\br>
-**Microsoft.Sql/servers/databases/requestedServiceObjectiveName**	- Set the name of the configured service level objective of the database.<\br>
+**Microsoft.Sql/servers/databases/edition** -	Set the edition of the database.</br>
+**Microsoft.Sql/servers/databases/elasticPoolName**	- Set the name of the elastic pool the database is in.</br>
+**Microsoft.Sql/servers/databases/requestedServiceObjectiveId**	- Set the configured service level objective ID of the database.</br>
+**Microsoft.Sql/servers/databases/requestedServiceObjectiveName**	- Set the name of the configured service level objective of the database.</br>
 
 ### Microsoft.Sql/elasticpools
 
-servers/elasticpools	Microsoft.Sql/servers/elasticPools/dtu.<\br>
-servers/elasticpools	Microsoft.Sql/servers/elasticPools/edition.<\br>
+servers/elasticpools	Microsoft.Sql/servers/elasticPools/dtu.</br>
+servers/elasticpools	Microsoft.Sql/servers/elasticPools/edition.</br>
 
 ### Microsoft.Storage/storageAccounts
 
-**Microsoft.Storage/storageAccounts/accessTier** -	Set the access tier used for billing.<\br>
-**Microsoft.Storage/storageAccounts/accountType**	- Set the SKU name.<\br>
-**Microsoft.Storage/storageAccounts/enableBlobEncryption**	- Set whether the service encrypts the data as it is stored in the blob storage service.<\br>
-**Microsoft.Storage/storageAccounts/enableFileEncryption**	- Set whether the service encrypts the data as it is stored in the file storage service.<\br>
-**Microsoft.Storage/storageAccounts/sku.name** -	Set the SKU name.<\br>
-**Microsoft.Storage/storageAccounts/supportsHttpsTrafficOnly** - Set to allow only https traffic to storage service.<\br>
-**Microsoft.Storage/storageAccounts/networkAcls.virtualNetworkRules[*].id**	- Check whether Virtual Network Service Endpoint is enabled.<\br>
+**Microsoft.Storage/storageAccounts/accessTier** -	Set the access tier used for billing.</br>
+**Microsoft.Storage/storageAccounts/accountType**	- Set the SKU name.</br>
+**Microsoft.Storage/storageAccounts/enableBlobEncryption**	- Set whether the service encrypts the data as it is stored in the blob storage service.</br>
+**Microsoft.Storage/storageAccounts/enableFileEncryption**	- Set whether the service encrypts the data as it is stored in the file storage service.</br>
+**Microsoft.Storage/storageAccounts/sku.name** -	Set the SKU name.</br>
+**Microsoft.Storage/storageAccounts/supportsHttpsTrafficOnly** - Set to allow only https traffic to storage service.</br>
+**Microsoft.Storage/storageAccounts/networkAcls.virtualNetworkRules[*].id**	- Check whether Virtual Network Service Endpoint is enabled.</br>
 
 
  
