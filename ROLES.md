@@ -258,8 +258,16 @@ servers/elasticpools	Microsoft.Sql/servers/elasticPools/edition.</br>
 **Microsoft.Storage/storageAccounts/supportsHttpsTrafficOnly** - Set to allow only https traffic to storage service.</br>
 **Microsoft.Storage/storageAccounts/networkAcls.virtualNetworkRules[*].id**	- Check whether Virtual Network Service Endpoint is enabled.</br>
 
+### Microsoft.Web/serverfarms
+
+**Microsoft.Web/serverfarms/sku.name** - Set the SKU name of App service plan.</br>
+
+### Microsoft.DocumentDB/databaseAccounts
+
+**Microsoft.DocumentDB/databaseAccounts/sku.name** - Set the SKU name of Cosmos DB.</br>
+
 ## An Example for ARM Policy
-Rbac file which permits the user to create a Virtual Machine, Network Security Group, Virtual Network, Public Ip Address and Network Interface card looks like as follows
+ARM Policy file which permits the user to create a Virtual Machine of specific size, all resources under Microsoft.Networks and Storage account- Standard_LRS looks like as follows:
 ````
 {
     "if": {
