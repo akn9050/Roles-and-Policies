@@ -21,7 +21,7 @@ __Microsoft.Compute/avalabilitySets/*__ </br>
 __Microsoft.Compute/virtualMachines/*__ </br> 
 __Microsoft.Compute/virtualMachineScaleSets/*__ </br>
 Or else we can give :</br>
-__Microsoft.Compute/*__ - This will give full permissions to all resources under Microsoft.Compute</br>
+__Microsoft.Compute/*__ - This will give full permissions to all resources under Microsoft.Compute</br></br>
 We can further restrict or allow the user by using the following actions actions/operations along with Microsoft.Compute. </br></br>
 **/availabilitySets/read**	             -        Get the properties of an availability set </br>
 **/availabilitySets/write**	             -        Creates a new availability set or updates an existing one </br>
@@ -45,7 +45,7 @@ We can further restrict or allow the user by using the following actions actions
 We can give full permissions by adding the following actions in Role file.</br>
 __Microsoft.Storage/*__ </br>
 Or else we can give :</br>
-__Microsoft.Storage/storageAccounts/*__   - This will give permission to all actions under the resource Storage Account. </br>
+__Microsoft.Storage/storageAccounts/*__   - This will give permission to all actions under the resource Storage Account. </br></br>
 We can further restrict or allow the user by using the following actions actions/operations along with Microsoft.Storage. </br>
 **/storageAccounts/write**	             -          Creates a storage account with the specified parameters or update the properties or  tags or adds custom domain for the specified storage account.</br>
 **/storageAccounts/delete**              -         	Deletes an existing storage account.</br>
@@ -64,7 +64,7 @@ If we are giving full permissions to these resources then operations in Rbac wil
 __Microsoft.Networks/virtualNetworks/*__ </br>
 __Microsoft.Networks/networkInterfaces/*__ </br>
 __Microsoft.Networks/networkSecurityGroups/*__ </br>
-__Microsoft.Networks/publicIPAddress/*__ </br>
+__Microsoft.Networks/publicIPAddress/*__ </br></br>
  We can further deny or restrict using the following commands along with Microsoft.Networks</br>
 **/networkSecurityGroups/read**	- Gets a network security group definition.</br>
 **/networkSecurityGroups/write**	- Creates a network security group or updates an existing network security group.</br>
@@ -93,7 +93,7 @@ __Microsoft.Networks/publicIPAddress/*__ </br>
 **/publicIPAddresses/write**	- Creates a public Ip address or updates an existing public Ip address.</br>
 **/publicIPAddresses/delete**	- Deletes a public Ip address.</br>
 **/publicIPAddresses/join/action** - Joins a public ip address.</br></br>
-If the user wants to create Load Balancer,the following actions along with Microsoft.Networks in Rbac file.</br>
+If the user wants to create Load Balancer, use the following actions along with Microsoft.Networks in Rbac file.</br>
 **/loadBalancers/read**-	Gets a load balancer definition.</br>
 **/loadBalancers/write**-	Creates a load balancer or updates an existing load balancer.</br>
 **/loadBalancers/delete**-	Deletes a load balancer.</br>
@@ -104,7 +104,7 @@ If the user wants to create Load Balancer,the following actions along with Micro
 **/loadBalancers/probes/read**	-Gets a load balancer probe.</br>
 **/loadBalancers/virtualMachines/read**	-Gets references to all the virtual machines under a load balancer.</br>
 **/loadBalancers/frontendIPConfigurations/read**	-Gets a load balancer frontend IP configuration definition.</br>
-For full permissions to loadBalancer we can use: __Microsoft.Networks/loadBalancers/*__ .</br></br>
+For full permissions to loadBalancer we can use: __Microsoft.Networks/loadBalancers/*__ .</br>
 
 Microsoft.Networks also includes resources like Application Gateways and Local Network Gateways. Resources like this are highly cost consuming. So if it is not needed for the user, then it is better to deny permission create to these resources.We can deny any resources by including that specific resources inside Not Actions[].</br>
 Actions/ Operations related to Network Gateways and Application Gateways are:</br>
@@ -116,6 +116,36 @@ Actions/ Operations related to Network Gateways and Application Gateways are:</b
 **/applicationGateways/stop/action**	-Stops an application gateway.</br>
 **/applicationGateways/backendAddressPools/join/action** -	Joins an application gateway backend address pool.</br>
 
+## Example for Rbac file
+Rbac file which permits the user to create a Virtual Machine, Network Security Group, Virtual Network, Public Ip Address and Network Interface card looks like as follows
+````
+{
+  "Name": "Sample Custom Role",
+  "Id": "casb4a5a-4e7a-41be-14dv-05cje226739",
+  "IsCustom": true,
+  "Description": "Azure Resource Manager Custom Role",
+  "Actions": [
+    "Microsoft.Authorization/*/read",
+    "Microsoft.Compute/locations/*",
+    "Microsoft.Resources/deployments/*",
+    "Microsoft.Resources/subscriptions/resourceGroups/read",
+    "Microsoft.Compute/virtualMachines/*",
+    "Microsoft.Storage/storageAccounts/*",
+    "Microsoft.Network/virtualNetworks/*",
+    "Microsoft.Network/networkInterfaces/*",
+    "Microsoft.Network/publicIpAddresses/*",
+    "Microsoft.Network/networkSecurityGroups/*"
+
+  ],
+  "NotActions": [
+  ],
+  "AssignableScopes": [
+   ]
+}
+````
+````
+Id specified in the rbac file should be unique and you can generate it using a GUID Generator.
+````
 # ARM Policies
 This will help you to create appropriate ARM policies for your environment and decide what all should we include in your policy file. This document is more about what we are using in day to day work.</br>
 Azure Policy is a service in Azure that you use to create, assign and, manage policy definitions. Policy definitions enforce different rules and actions over your resources, so those resources stay compliant with your corporate standards and service level agreements. Azure Policy runs an evaluation of your resources, scanning for those not compliant with the policy definitions you have. For example, you can have a policy to allow only certain type of virtual machines. Another requires that all resources have a particular tag. These policies are then evaluated when creating and updating resources.</br>
