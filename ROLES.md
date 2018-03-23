@@ -116,7 +116,7 @@ Actions/ Operations related to Network Gateways and Application Gateways are:</b
 **/applicationGateways/stop/action**	-Stops an application gateway.</br>
 **/applicationGateways/backendAddressPools/join/action** -	Joins an application gateway backend address pool.</br>
 
-## Example for Rbac file
+## An Example for Rbac 
 Rbac file which permits the user to create a Virtual Machine, Network Security Group, Virtual Network, Public Ip Address and Network Interface card looks like as follows
 ````
 {
@@ -130,7 +130,6 @@ Rbac file which permits the user to create a Virtual Machine, Network Security G
     "Microsoft.Resources/deployments/*",
     "Microsoft.Resources/subscriptions/resourceGroups/read",
     "Microsoft.Compute/virtualMachines/*",
-    "Microsoft.Storage/storageAccounts/*",
     "Microsoft.Network/virtualNetworks/*",
     "Microsoft.Network/networkInterfaces/*",
     "Microsoft.Network/publicIpAddresses/*",
@@ -258,6 +257,99 @@ servers/elasticpools	Microsoft.Sql/servers/elasticPools/edition.</br>
 **Microsoft.Storage/storageAccounts/sku.name** -	Set the SKU name.</br>
 **Microsoft.Storage/storageAccounts/supportsHttpsTrafficOnly** - Set to allow only https traffic to storage service.</br>
 **Microsoft.Storage/storageAccounts/networkAcls.virtualNetworkRules[*].id**	- Check whether Virtual Network Service Endpoint is enabled.</br>
+
+## An Example for ARM Policy
+Rbac file which permits the user to create a Virtual Machine, Network Security Group, Virtual Network, Public Ip Address and Network Interface card looks like as follows
+````
+{
+    "if": {
+        "anyOf": [{
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Storage/storageAccounts"
+                    },
+                    {
+                        "not": {
+                            "field": "Microsoft.Storage/storageAccounts/sku.name",
+                            "in": [
+                                "Standard_LRS"
+                            ]
+                        }
+                    },
+                    {
+                        "not": {
+                            "field": "Microsoft.Storage/storageAccounts/accessTier",
+                            "equals": "cool"
+                        }
+                    }
+                ]
+            },
+            {
+                "allOf": [{
+                        "field": "type",
+                        "equals": "Microsoft.Compute/virtualMachines"
+                    },
+                    {
+                        "not": {
+                            "field": "Microsoft.Compute/virtualMachines/sku.name",
+                          "equals": "Standard_A2_v2"
+                        }
+                    }
+                ]
+            },
+            {
+                "not": {
+                    "anyOf": [{
+                            "field": "type",
+                            "like": "Microsoft.Resources/*"
+                        },
+                        {
+                            "field": "type",
+                            "like": "Microsoft.Compute/*"
+                        },
+                        {
+                            "field": "type",
+                            "like": "Microsoft.Storage/*"
+                        },
+                        {
+                            "field": "type",
+                            "like": "Microsoft.Network/*"
+                        }
+                    ]
+                }
+            },
+            {
+                "allOf": [{
+                        "field": "type",
+                        "equals": "Microsoft.Compute/virtualMachines"
+                    },
+                    {
+                        "not": {
+                            "allOf": [{
+                                    "field": "Microsoft.Compute/virtualMachines/imagePublisher",
+                                    "equals": "MicrosoftWindowsServer"
+                                },
+                                {
+                                    "field": "Microsoft.Compute/virtualMachines/imageOffer",
+                                    "equals": "WindowsServer"
+                                },
+                                {
+                                    "field": "Microsoft.Compute/virtualMachines/imageSku",
+                                    "equals": "2012-R2-Datacenter"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "then": {
+        "effect": "deny"
+    }
+}
+````
 
 
  
